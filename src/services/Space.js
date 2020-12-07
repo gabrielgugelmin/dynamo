@@ -5,9 +5,10 @@ class SpaceService {
     this.baseURL = 'launches/';
   }
 
-  getLastLaunches = async () => {
-    debugger;
-    const { data } = await api.get(`${this.baseURL}past`);
+  getLastLaunches = async ({ limit = 50, offset = 0 }) => {
+    const { data } = await api.get(
+      `${this.baseURL}past?limit=${limit}&offset=${offset}`,
+    );
 
     return data;
   };

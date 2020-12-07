@@ -33,6 +33,12 @@ class HomeContainer extends Component {
     this.setState({ launches: response });
   };
 
+  loadMore = async () => {
+    await SpaceStore.loadMore();
+    const { launches } = SpaceStore;
+    this.setState({ launches });
+  };
+
   render() {
     const { launches, userInitial } = this.state;
     return (
@@ -45,6 +51,9 @@ class HomeContainer extends Component {
                 Latest launches
               </H1>
               <CardList items={launches} />
+              <button onClick={this.loadMore} type="button">
+                load more
+              </button>
             </Content>
           </Container>
         </Page>

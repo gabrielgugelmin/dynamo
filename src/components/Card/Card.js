@@ -4,9 +4,11 @@ import { CardWrapper, Image, Content, Info, Title, Text } from './styles';
 function Card({ name, year, site, image, onClick, viewMode }) {
   return (
     <CardWrapper onClick={onClick} viewMode={viewMode}>
-      <Image>
-        <img src={image} alt="Rocket patch" />
-      </Image>
+      {image && (
+        <Image>
+          <img src={image} alt="Rocket patch" />
+        </Image>
+      )}
       <Content>
         <Info>
           <Title>Mission name</Title>

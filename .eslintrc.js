@@ -34,5 +34,6 @@ module.exports = {
     'no-debugger': 'warn',
     'react/prop-types': 'warn',
     'react/no-unescaped-entities': 'off',
+    'no-plusplus': 'off',
   },
 };

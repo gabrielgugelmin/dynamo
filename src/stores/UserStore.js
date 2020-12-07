@@ -59,7 +59,9 @@ class UserStore {
   };
 
   getIsAuthenticated = () => {
-    return this.isAuthenticated;
+    const user = JSON.parse(localStorage.getItem('user'));
+
+    return (user?.username && user?.password) || false;
   };
 
   setIsAuthenticated = isAuthenticated => {
@@ -69,9 +71,13 @@ class UserStore {
   @action
   setUser = user => {
     this.user = user;
+    localStorage.setItem('user', JSON.stringify(user));
   };
 
   getUserInitial = () => {
+    if (!this.user?.username) {
+      this.user = JSON.parse(localStorage.getItem('user'));
+    }
     return this.user?.username?.substring(0, 1);
   };
 }
