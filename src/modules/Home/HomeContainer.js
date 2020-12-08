@@ -8,7 +8,7 @@ import Page from '~/components/Page';
 import { H1 } from '~/components/Title';
 import Container from '~/components/Container';
 import CardList from '~/components/CardList';
-import Content from './components/Content';
+import Content from '~/components/Content';
 
 @observer
 @inject('SpaceStore', 'UserStore')
@@ -21,14 +21,7 @@ class HomeContainer extends Component {
 
   componentDidMount() {
     this.loadLaunches();
-    this.setUserInitial();
   }
-
-  setUserInitial = () => {
-    this.setState({
-      userInitial: UserStore.getUserInitial(),
-    });
-  };
 
   loadLaunches = async () => {
     const response = await SpaceStore.getLastLaunches();
@@ -36,7 +29,6 @@ class HomeContainer extends Component {
   };
 
   loadMore = async () => {
-    console.log('asdasd');
     this.setState({
       isLoadingMore: true,
     });
@@ -45,8 +37,15 @@ class HomeContainer extends Component {
     this.setState({ launches, isLoadingMore: false });
   };
 
+  onCardClick = id => {
+    const { history } = this.props;
+    history.push(`/detail/${id}`);
+  };
+
   render() {
-    const { launches, userInitial, isLoadingMore, isLoading } = this.state;
+    const { launches, isLoadingMore, isLoading } = this.state;
+    const userInitial = UserStore.getUserInitial();
+
     return (
       <>
         <Page>
@@ -61,6 +60,7 @@ class HomeContainer extends Component {
                 isLoadingMore={isLoadingMore}
                 items={launches}
                 loadMore={this.loadMore}
+                onCardClick={this.onCardClick}
               />
             </Content>
           </Container>

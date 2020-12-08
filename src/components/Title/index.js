@@ -1,1 +1,1 @@
-export { H1 } from './Title';
+export * from './Title';

@@ -12,6 +12,12 @@ class SpaceService {
 
     return data;
   };
+
+  getLaunch = async flightNumber => {
+    const { data } = await api.get(`${this.baseURL}${flightNumber}`);
+    console.log(data);
+    return data;
+  };
 }
 
 const service = new SpaceService();

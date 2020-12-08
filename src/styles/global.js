@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import Planet from '~/assets/images/planet.svg';
 
 export default createGlobalStyle`

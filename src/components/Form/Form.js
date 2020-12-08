@@ -49,6 +49,7 @@ export const LinkButton = styled.button`
   cursor: pointer;
   font-size: 14px;
   font-weight: ${fonts.medium};
+  background: transparent;
 `;
 
 export const Footer = styled.footer`

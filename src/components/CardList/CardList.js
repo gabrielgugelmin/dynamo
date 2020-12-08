@@ -7,7 +7,7 @@ import LoadingIcon from '~/assets/icons/loading';
 import Button from '~/components/Button';
 import { List, Feedback, ViewMode, ViewModeButton, Text } from './styles';
 
-function CardList({ isLoading, isLoadingMore, loadMore, items }) {
+function CardList({ isLoading, isLoadingMore, loadMore, items, onCardClick }) {
   const [viewMode, setViewMode] = useState('grid');
 
   if (isLoading) return <LoadingIcon />;
@@ -38,8 +38,11 @@ function CardList({ isLoading, isLoadingMore, loadMore, items }) {
       <List>
         {items.map(item => (
           <Card
+            id={item?.flight_number}
             image={item?.links?.mission_patch_small}
+            key={item?.flight_number}
             name={item?.mission_name}
+            onClick={onCardClick}
             site={item?.launch_site?.site_name}
             viewMode={viewMode}
             year={item?.launch_year}
@@ -55,8 +58,8 @@ function CardList({ isLoading, isLoadingMore, loadMore, items }) {
       </Button>
     </>
   ) : (
-      <Feedback>nothing here</Feedback>
-    );
+    <Feedback>nothing here</Feedback>
+  );
 }
 
 export default CardList;

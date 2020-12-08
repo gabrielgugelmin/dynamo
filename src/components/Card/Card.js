@@ -1,9 +1,9 @@
 import React from 'react';
 import { CardWrapper, Image, Content, Info, Title, Text } from './styles';
 
-function Card({ name, year, site, image, onClick, viewMode }) {
+function Card({ id, name, year, site, image, onClick, viewMode }) {
   return (
-    <CardWrapper onClick={onClick} viewMode={viewMode}>
+    <CardWrapper onClick={() => onClick(id)} viewMode={viewMode}>
       {image && (
         <Image>
           <img src={image} alt="Rocket patch" />
