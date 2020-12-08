@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { InfoWrapper, Title, Text } from './styles';
 
 function Info({ title, text }) {
@@ -11,3 +12,13 @@ function Info({ title, text }) {
 }
 
 export default Info;
+
+Info.propTypes = {
+  title: PropTypes.string,
+  text: PropTypes.string,
+};
+
+Info.defaultProps = {
+  title: '',
+  text: '',
+};

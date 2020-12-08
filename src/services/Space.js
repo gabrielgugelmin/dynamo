@@ -15,7 +15,6 @@ class SpaceService {
 
   getLaunch = async flightNumber => {
     const { data } = await api.get(`${this.baseURL}${flightNumber}`);
-    console.log(data);
     return data;
   };
 }

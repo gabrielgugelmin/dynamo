@@ -1,6 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Container from '~/components/Container';
 import {
+  Caps,
   HeaderWrapper,
   HeaderContainer,
   UserWrapper,
@@ -17,7 +19,9 @@ function Header({ userInitial }) {
           <Logo />
           <UserWrapper>
             <Photo />
-            <Greetings>Hello, {userInitial}.</Greetings>
+            <Greetings>
+              Hello, <Caps>{userInitial}</Caps>.
+            </Greetings>
           </UserWrapper>
         </HeaderContainer>
       </Container>
@@ -26,3 +30,11 @@ function Header({ userInitial }) {
 }
 
 export default Header;
+
+Header.propTypes = {
+  userInitial: PropTypes.string,
+};
+
+Header.defaultProps = {
+  userInitial: '',
+};

@@ -6,9 +6,10 @@ import ListIcon from '~/assets/icons/list';
 import LoadingIcon from '~/assets/icons/loading';
 import Button from '~/components/Button';
 import { List, Feedback, ViewMode, ViewModeButton, Text } from './styles';
+import { VIEW_MODE } from '~/utils/constants';
 
 function CardList({ isLoading, isLoadingMore, loadMore, items, onCardClick }) {
-  const [viewMode, setViewMode] = useState('grid');
+  const [viewMode, setViewMode] = useState(VIEW_MODE.GRID);
 
   if (isLoading) return <LoadingIcon />;
 
@@ -19,7 +20,7 @@ function CardList({ isLoading, isLoadingMore, loadMore, items, onCardClick }) {
         <ViewModeButton
           onClick={() => setViewMode('grid')}
           type="button"
-          className={viewMode === 'grid' ? 'active' : ''}
+          className={viewMode === VIEW_MODE.GRID ? 'active' : ''}
         >
           <GridIcon
             style={{
@@ -28,9 +29,9 @@ function CardList({ isLoading, isLoadingMore, loadMore, items, onCardClick }) {
           />
         </ViewModeButton>
         <ViewModeButton
-          onClick={() => setViewMode('list')}
+          onClick={() => setViewMode(VIEW_MODE.LIST)}
           type="button"
-          className={viewMode === 'list' ? 'active' : ''}
+          className={viewMode === VIEW_MODE.LIST ? 'active' : ''}
         >
           <ListIcon />
         </ViewModeButton>
@@ -58,12 +59,11 @@ function CardList({ isLoading, isLoadingMore, loadMore, items, onCardClick }) {
       </Button>
     </>
   ) : (
-    <Feedback>nothing here</Feedback>
-  );
+      <Feedback>nothing here</Feedback>
+    );
 }
 
 export default CardList;
-
 CardList.propTypes = {
   items: PropTypes.arrayOf({
     image: PropTypes.string,
@@ -72,13 +72,14 @@ CardList.propTypes = {
     viewMode: PropTypes.string,
     year: PropTypes.string,
   }),
+  isLoading: PropTypes.bool,
+  isLoadingMore: PropTypes.bool,
+  loadMore: PropTypes.func.isRequired,
+  onCardClick: PropTypes.func.isRequired,
 };
 
 CardList.defaultProps = {
-  items: PropTypes.arrayOf({
-    image: '',
-    name: '',
-    site: '',
-    year: '',
-  }),
+  items: [],
+  isLoading: false,
+  isLoadingMore: false,
 };

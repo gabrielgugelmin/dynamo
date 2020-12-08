@@ -15,6 +15,7 @@ import { Content, FormWrapper } from './styles';
 function LoginForm({
   errorMessage,
   handleLogin,
+  isLoading,
   onChange,
   password,
   toggleForms,
@@ -41,7 +42,9 @@ function LoginForm({
             name="password"
           />
         </FormControl>
-        <Button onClick={handleLogin}>Login</Button>
+        <Button onClick={handleLogin} isLoading={isLoading}>
+          Login
+        </Button>
         {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
         <Footer>
           <Small>
@@ -58,4 +61,17 @@ export default LoginForm;
 
 LoginForm.propTypes = {
   handleLogin: PropTypes.func.isRequired,
+  errorMessage: PropTypes.string,
+  onChange: PropTypes.func.isRequired,
+  password: PropTypes.string,
+  toggleForms: PropTypes.func.isRequired,
+  username: PropTypes.string,
+  isLoading: PropTypes.bool,
+};
+
+LoginForm.defaultProps = {
+  errorMessage: '',
+  password: '',
+  username: '',
+  isLoading: false,
 };

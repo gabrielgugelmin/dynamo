@@ -5,8 +5,8 @@ import UserStore from '~/stores/UserStore';
 
 import LoginContent from './components/LoginContent';
 
-@observer
 @inject('UserStore')
+@observer
 class LoginContainer extends Component {
   state = {
     confirmPassword: '',
@@ -45,28 +45,31 @@ class LoginContainer extends Component {
   };
 
   handleLogin = async () => {
+    this.setState({
+      isLoading: true,
+    });
     const { username, password } = this.state;
     const { isAuthenticated, errorMessage } = UserStore.signIn({
       username,
       password,
     });
 
-    debugger;
-
     this.setState({
       isAuthenticated,
       errorMessage,
+      isLoading: false,
     });
   };
 
   render() {
     const {
-      isAuthenticated,
-      username,
-      password,
-      isSignUp,
       errorMessage,
+      isAuthenticated,
+      isLoading,
+      isSignUp,
+      password,
       successMessage,
+      username,
     } = this.state;
 
     return (
@@ -74,12 +77,13 @@ class LoginContainer extends Component {
         {isAuthenticated && <Redirect to="/home" />}
         <LoginContent
           errorMessage={errorMessage}
-          successMessage={successMessage}
           handleLogin={this.handleLogin}
           handleSignUp={this.handleSignUp}
+          isLoading={isLoading}
           isSignUp={isSignUp}
           onChange={this.onChange}
           password={password}
+          successMessage={successMessage}
           toggleForms={this.toggleForms}
           username={username}
         />

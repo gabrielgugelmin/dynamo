@@ -10,8 +10,8 @@ import Container from '~/components/Container';
 import CardList from '~/components/CardList';
 import Content from '~/components/Content';
 
-@observer
 @inject('SpaceStore', 'UserStore')
+@observer
 class HomeContainer extends Component {
   state = {
     launches: [],

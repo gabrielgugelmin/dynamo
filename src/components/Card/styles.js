@@ -27,12 +27,15 @@ export const Info = styled.div`
 
 export const CardWrapper = styled.div`
   background-color: ${colors.concrete};
+  box-shadow: 2px 2px 16px 5px rgba(0, 0, 0, 0);
   border-radius: 4px;
+  cursor: pointer;
   display: flex;
   flex-direction: row;
   margin-bottom: 24px;
   margin-right: 24px;
   padding: 16px;
+  transition: box-shadow 0.3s ease-in-out;
 
   ${css`
     width: calc(33.333% - 16px);
@@ -55,6 +58,10 @@ export const CardWrapper = styled.div`
   ${Info} {
     flex: 1 1 auto;
     padding-right: ${({ viewMode }) => (viewMode === 'grid' ? '0' : '16px')};
+  }
+
+  &:hover {
+    box-shadow: 2px 2px 16px 5px rgba(0, 0, 0, 0.1);
   }
 `;
 

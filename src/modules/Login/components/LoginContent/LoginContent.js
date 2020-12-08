@@ -5,15 +5,15 @@ import SignUpForm from '../SignUpForm';
 import { Content, Left, Right, Rocket, SignUp } from './styles';
 
 function LoginContent({
+  errorMessage,
   handleLogin,
   handleSignUp,
-  toggleForms,
   isSignUp,
   onChange,
   password,
-  username,
-  errorMessage,
   successMessage,
+  toggleForms,
+  username,
 }) {
   return (
     <Content>

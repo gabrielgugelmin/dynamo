@@ -5,6 +5,10 @@ import ManImage from '~/assets/images/man.jpg';
 import colors from '~/utils/colors';
 import fonts from '~/utils/fonts';
 
+export const Caps = styled.span`
+  text-transform: uppercase;
+`;
+
 export const HeaderWrapper = styled.header`
   padding: 32px 0;
   width: 100%;

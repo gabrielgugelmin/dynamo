@@ -11,8 +11,8 @@ import Content from '~/components/Content';
 import Detail from './components/Detail';
 import { whileLoading } from '~/utils/whileLoading';
 
-@observer
 @inject('SpaceStore', 'UserStore')
+@observer
 class HomeContainer extends Component {
   state = {
     launch: {},
@@ -31,8 +31,6 @@ class HomeContainer extends Component {
     const launch = SpaceStore.getFormatedLaunch();
 
     this.setState({ launch });
-
-    console.log(launch);
   };
 
   getLaunch = async id => {

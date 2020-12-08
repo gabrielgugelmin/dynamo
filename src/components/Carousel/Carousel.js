@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Carousel } from 'react-responsive-carousel';
 import id from '~/utils/id';
 import CarouselImage from '../CarouselImage';
@@ -25,3 +26,7 @@ function CarouselComponent({ images }) {
 }
 
 export default CarouselComponent;
+
+CarouselComponent.propTypes = {
+  images: PropTypes.arrayOf(PropTypes.string).isRequired,
+};
