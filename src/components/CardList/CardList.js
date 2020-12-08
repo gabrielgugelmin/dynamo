@@ -3,10 +3,14 @@ import PropTypes from 'prop-types';
 import Card from '../Card';
 import GridIcon from '~/assets/icons/grid';
 import ListIcon from '~/assets/icons/list';
+import LoadingIcon from '~/assets/icons/loading';
+import Button from '~/components/Button';
 import { List, Feedback, ViewMode, ViewModeButton, Text } from './styles';
 
-function CardList({ items }) {
+function CardList({ isLoading, isLoadingMore, loadMore, items }) {
   const [viewMode, setViewMode] = useState('grid');
+
+  if (isLoading) return <LoadingIcon />;
 
   return items?.length > 0 ? (
     <>
@@ -42,9 +46,16 @@ function CardList({ items }) {
           />
         ))}
       </List>
+      <Button
+        isLoading={isLoadingMore}
+        onClick={() => loadMore()}
+        type="button"
+      >
+        Load more
+      </Button>
     </>
   ) : (
-      <Feedback>Nothing here!</Feedback>
+      <Feedback>nothing here</Feedback>
     );
 }
 

@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  Button,
   Footer,
   FormControl,
   Input,
@@ -10,6 +9,7 @@ import {
   ErrorMessage,
   SuccessMessage,
 } from '~/components/Form';
+import Button from '~/components/Button';
 import { H1 } from '~/components/Title';
 import { Content, FormWrapper } from './styles';
 

@@ -15,6 +15,8 @@ import Content from './components/Content';
 class HomeContainer extends Component {
   state = {
     launches: [],
+    isLoading: true,
+    isLoadingMore: false,
   };
 
   componentDidMount() {
@@ -30,17 +32,21 @@ class HomeContainer extends Component {
 
   loadLaunches = async () => {
     const response = await SpaceStore.getLastLaunches();
-    this.setState({ launches: response });
+    this.setState({ launches: response, isLoading: false });
   };
 
   loadMore = async () => {
+    console.log('asdasd');
+    this.setState({
+      isLoadingMore: true,
+    });
     await SpaceStore.loadMore();
     const { launches } = SpaceStore;
-    this.setState({ launches });
+    this.setState({ launches, isLoadingMore: false });
   };
 
   render() {
-    const { launches, userInitial } = this.state;
+    const { launches, userInitial, isLoadingMore, isLoading } = this.state;
     return (
       <>
         <Page>
@@ -50,10 +56,12 @@ class HomeContainer extends Component {
               <H1 align="center" margin="0 0 64px 0">
                 Latest launches
               </H1>
-              <CardList items={launches} />
-              <button onClick={this.loadMore} type="button">
-                load more
-              </button>
+              <CardList
+                isLoading={isLoading}
+                isLoadingMore={isLoadingMore}
+                items={launches}
+                loadMore={this.loadMore}
+              />
             </Content>
           </Container>
         </Page>
